@@ -3,7 +3,6 @@ const imageFile = document.getElementById("imageFile");
 const uploadMessage = document.getElementById("uploadMessage");
 const downloadBtn = document.getElementById("downloadBtn");
 
-
 uploadBtn.addEventListener("click", () => imageFile.click());
 
 
@@ -18,7 +17,7 @@ imageFile.addEventListener("change", () => {
     .then(res => res.json())
     .then(result => {
         if(result.status === "success"){
-           
+            
             uploadMessage.style.display = "block";
             setTimeout(()=> uploadMessage.style.opacity = 1, 10);
             setTimeout(()=> {
@@ -26,7 +25,7 @@ imageFile.addEventListener("change", () => {
                 setTimeout(()=> uploadMessage.style.display = "none", 500);
             }, 3000);
         } else {
-            alert("خطا در آپلود فایل!");
+            alert("خطا ر آپلود فایل!");
         }
         imageFile.value = "";
     })

@@ -6,6 +6,7 @@ body, html {
     background-color: #f0f0f0;
 }
 
+
 .upload-container {
     position: absolute;
     top: 35%;
@@ -15,12 +16,16 @@ body, html {
 }
 
 
+
 .download-container {
     position: absolute;
     top: 35%;
     left: 41%; 
     transform: translate(-50%, -50%);
 }
+
+
+
 
 
 button {
@@ -35,12 +40,45 @@ button {
     transition: all 0.3s ease;
 }
 
+
+#downloadBtn {
+    display: none;           
+    margin: 40px auto 0 auto;
+
+    padding: 15px 35px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    background-color: #28a745; 
+   
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;     
+    box-shadow: 0 6px 12px rgba(241, 1, 1, 0.3);
+    transition: all 0.3s ease;
+
+    display: block;
+    width: fit-content;
+}
+
+#downloadBtn:hover {
+    background-color: #1e7e34;
+}
+
+#downloadBtn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(9, 70, 253, 0.3);
+
+
+}
+
 #uploadBtn {
     background-color: #007bff;
 }
 #uploadBtn:hover {
     background-color: #0056b3;
 }
+
 
 #downloadBtn {
     background-color: #d91540;
@@ -50,19 +88,22 @@ button {
 }
 
 
+
 button:active {
     transform:scale(0.90);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);   
 }
 
 
+
+
 #uploadMessage {
     display: none;
     position: fixed;      
     top: 550px;             
-    left: 50%;            
+    left: 50%;             
     transform: translateX(-50%); 
-    background-color: #4b925d;  
+    background-color: #4b925d; 
     color: white;
     padding: 15px 30px;
     font-size: 20px;
@@ -71,5 +112,5 @@ button:active {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     opacity: 0;
     transition: opacity 0.5s ease;
-    z-index: 9999; 
+    z-index: 9999;
 }
