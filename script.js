@@ -6,7 +6,6 @@ const downloadBtn = document.getElementById("downloadBtn");
 
 uploadBtn.addEventListener("click", () => imageFile.click());
 
-
 imageFile.addEventListener("change", () => {
     const file = imageFile.files[0];
     if (!file) return;

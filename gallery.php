@@ -1,5 +1,5 @@
 <?php
-$dir = __DIR__ . '/uploads/'; 
+$dir = __DIR__ . '/uploads/';
 $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             gap: 60px;
         }
 
-        
+      
         .file-list {
             width: 40%;
             border-right: none; 
@@ -33,29 +33,29 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 
        
         .file-item {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            padding: 6px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 10px;
+        transition: all 0.35s ease;
+        font-size: 13px;
         }
 
-        .file-item a {
-            text-decoration: none;
-            color: #292d30;
+        .file-item:hover {
+        background-color: #f4f7ff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .file-item .file-name{
             font-weight: bold;
         }
 
-        .file-item a:hover {
-            text-decoration: underline;
-            background-color: #ddebfc;
-        }
+        
 
-        .file-time {
-            font-size: 13px;
-            color: #666;
-        }
-
-       
+        
+        
         .preview {
             flex: 1;
             text-align: center;
@@ -71,25 +71,31 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         }
 
         .preview h3 {
-            font-size: 18px;
-            color: #444;
+            font-size: 15px;
+            color: #595b3fff;
+            margin-left: 400px;
+            margin-top: 80px;
+
         }
 
         .preview img {
-            max-width: 90%;
-            max-height: 80vh;
+            width: 50%;
+            height: 30vh;
             border: 1px solid #ccc;
             border-radius: 6px;
-            margin-top: 10px;
+            margin-top: 20px;
+            margin-left: 400px;
             display: none;
+            
         }
 
         #downloadBtn {
             display: none; 
-            margin: 20px auto 0 auto;
-            padding: 15px 35px;
-            font-size: 18px;
+            margin: 22px auto 0 auto;
+            padding: 12px 20px;
+            font-size: 15px;
             font-weight: bold;
+            margin-left: 430px;
            
             color: black;
             background-color: #f1ebbbff; 
@@ -98,7 +104,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             cursor: pointer;
             box-shadow: 0 5px 10px rgba(227, 182, 182, 0.2);
             transition: all 0.3s ease;
-            display: block; 
+            display: block;
             width: fit-content; 
         }
 
@@ -114,7 +120,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 </head>
 <body>
 
-  
+    
     <div class="file-list">
         <h2>📁 فایل‌های آپلودشده</h2>
         <?php if (empty($files)): ?>
@@ -125,17 +131,21 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
                 date_default_timezone_set('Asia/Tehran');
                 $uploadTime = date("m-d-Y H:i:s", filemtime($filePath));
             ?>
-                <div class="file-item">
-                    <a href="#" onclick="showImage('uploads/<?php echo htmlspecialchars($file); ?>', '<?php echo htmlspecialchars($file); ?>')">
+                <div class="file-item"
+                    onclick="showImage('uploads/<?php echo htmlspecialchars($file); ?>', '<?php echo htmlspecialchars($file); ?>')"
+                    style="cursor:pointer;">
+                    <span class="file-name">
                         <?php echo htmlspecialchars($file); ?>
-                    </a>
-                    <span class="file-time"><?php echo $uploadTime; ?></span>
+                    </span>
+                    <span class="file-time">
+                        <?php echo $uploadTime; ?>
+                    </span>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
 
-
+ 
     <div class="preview" id="preview">
         <h3 id="fileName"style="display:none;"></h3>
         <img id="previewImg" src="" alt="">

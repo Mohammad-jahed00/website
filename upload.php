@@ -14,7 +14,6 @@ $file = $_FILES['file'];
 $realName = preg_replace("/[^a-zA-Z0-9_\-\.]/", "_", basename($file['name']));
 $target = $uploadDir . $realName;
 
-
 $i = 1;
 $pathInfo = pathinfo($realName);
 while(file_exists($target)){
