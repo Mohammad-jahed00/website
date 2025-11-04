@@ -3,8 +3,8 @@ const imageFile = document.getElementById("imageFile");
 const uploadMessage = document.getElementById("uploadMessage");
 const downloadBtn = document.getElementById("downloadBtn");
 
-
 uploadBtn.addEventListener("click", () => imageFile.click());
+
 
 imageFile.addEventListener("change", () => {
     const file = imageFile.files[0];
@@ -17,7 +17,7 @@ imageFile.addEventListener("change", () => {
     .then(res => res.json())
     .then(result => {
         if(result.status === "success"){
-            
+          
             uploadMessage.style.display = "block";
             setTimeout(()=> uploadMessage.style.opacity = 1, 10);
             setTimeout(()=> {

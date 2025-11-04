@@ -6,6 +6,7 @@ if (!isset($_FILES['file'])) {
     exit;
 }
 
+
 $uploadDir = __DIR__ . '/uploads/';
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 

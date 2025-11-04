@@ -1,5 +1,5 @@
 <?php
-$dir = __DIR__ . '/uploads/';
+$dir = __DIR__ . '/uploads/'; 
 $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             gap: 60px;
         }
 
-      
+       
         .file-list {
             width: 40%;
             border-right: none; 
@@ -31,21 +31,60 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         }
 
 
-       
+
         .file-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 14px;
-        border-radius: 10px;
-        transition: all 0.35s ease;
-        font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            border-radius: 10px;
+            transition: all 0.35s ease;
+            font-size: 13px;
+            position: relative; 
+            background: transparent ;
         }
 
+        .file-name {
+            flex: 1 1 auto;    
+            min-width: 0;        
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+       
+
+      
         .file-item:hover {
-        background-color: #f4f7ff;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: #f4f7ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+
+        .delete-btn {      
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.25s ease;
+            margin-left: 10px;
+        }
+
+        
+        .file-item:hover .delete-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        
+        .delete-btn:hover {
+            color: #ff1a1a;
+            transform: scale(1.2);
         }
 
         .file-item .file-name{
@@ -55,7 +94,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         
 
         
-        
+       
         .preview {
             flex: 1;
             text-align: center;
@@ -91,7 +130,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 
         #downloadBtn {
             display: none; 
-            margin: 22px auto 0 auto;
+            margin: 22px auto 0 auto; 
             padding: 12px 20px;
             font-size: 15px;
             font-weight: bold;
@@ -104,8 +143,8 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             cursor: pointer;
             box-shadow: 0 5px 10px rgba(227, 182, 182, 0.2);
             transition: all 0.3s ease;
-            display: block;
-            width: fit-content; 
+            display: block; 
+            width: fit-content;
         }
 
         #downloadBtn:hover {
@@ -120,7 +159,6 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 </head>
 <body>
 
-    
     <div class="file-list">
         <h2>📁 فایل‌های آپلودشده</h2>
         <?php if (empty($files)): ?>
@@ -140,12 +178,13 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
                     <span class="file-time">
                         <?php echo $uploadTime; ?>
                     </span>
+                    <button class = "delete-btn" onclick="deleteFile('<?php echo htmlspecialchars($file);?>',event)">🗑️</button>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
 
- 
+    
     <div class="preview" id="preview">
         <h3 id="fileName"style="display:none;"></h3>
         <img id="previewImg" src="" alt="">
@@ -166,6 +205,27 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             downloadBtn.href=path;
             downloadBtn.download = name;
             downloadBtn.style.display = "inline-block";
+        }
+        function deleteFile(fileName, event) {
+            event.stopPropagation();
+
+            if (!confirm("آیا مطمئنی می‌خواهی این فایل را حذف کنی؟")) return;
+
+            fetch("delete.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "file=" + encodeURIComponent(fileName)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("فایل با موفقیت حذف شد ✅");
+                    location.reload();
+                } else {
+                    alert("خطا در حذف فایل ❌");
+                }
+            })
+            .catch(err => console.error(err));
         }
     </script>
 
