@@ -6,6 +6,7 @@ if (!isset($_POST['file'])) {
     exit;
 }
 
+
 $file = basename($_POST['file']); 
 $path = __DIR__ . '/uploads/' . $file;
 

@@ -18,10 +18,38 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             gap: 60px;
         }
 
+        .file-section{
+            width: 45%;
+            border-right: none;
+        }
+
         
         .file-list {
-            width: 45%;
-            border-right: none; 
+            
+            max-height: 74vh;
+            overflow-y: auto;
+            padding-right: 20px;
+            scrollbar-width: thin;
+            padding-top: 20px;
+            box-sizing: border-box;
+           
+        }
+
+        .file-list::-webkit-scrollbar{
+            width: 6px;
+        }
+
+        .file-list::-webkit-scrollbar-track{
+            background: #f1f1f1;
+        }
+
+        .file-list::-webkit-scrollbar-thumb{
+            background: #bbb;
+            border-radius: 10px;
+        }
+
+        .file-list::webkit-scrollbar-thumb:hover{
+            background: #888888ff;
         }
 
         h2 {
@@ -124,18 +152,18 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         .preview h3 {
             font-size: 15px;
             color: #595b3fff;
-            margin-left: 350px;
+            margin-left: 330px;
             margin-top: 60px;
             text-align: center;
             text-overflow: ellipsis;
         }
 
         .preview img {
-            width: 48%;
-            height: 28vh;
+            width: 46%;
+            height: 24vh;
             border: 1px solid #ccc;
             border-radius: 10px;
-            margin-top: 10px;
+            margin-top: 17px;
             margin-left: 345px;
             display: none;  
         }
@@ -143,7 +171,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         .TimeAndSize {
             display: flex;
             justify-content: space-between; 
-            width: 180px;
+            width: 180px; /* عرض ثابت برای منظم ماندن */
             font-size: 13px;
             color: #444;
             
@@ -152,11 +180,11 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         
         #downloadBtn {
             display: none;
-            margin: 22px auto 0 auto;
+            margin: 18px auto 0 auto;
             padding: 12px 20px;
             font-size: 15px;
             font-weight: bold;
-            margin-left: 355px;
+            margin-left: 345px;
            
             color: black;
             background-color: #f1ebbbff;
@@ -225,40 +253,41 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
     </div>
     <img src="loupe.png" alt="Search" id="search-icon">
     
-    <div class="file-list">
-        <div class="line"></div>
+    <div class="file-section">
         <h2>📁 Uploaded Files</h2>
-        <?php if (empty($files)): ?>
-            <p>هیچ فایلی آپلود نشده است.</p>
-        <?php else: ?>
-            <?php foreach ($files as $file): 
-                $filePath = $dir . $file;
-                date_default_timezone_set('Asia/Tehran');
-                $uploadTime = date("m-d-Y H:i:s", filemtime($filePath));
+        <div class="file-list">
+            <div class="line"></div>
+            <?php if (empty($files)): ?>
+                <p>هیچ فایلی آپلود نشده است.</p>
+            <?php else: ?>
+                <?php foreach ($files as $file): 
+                    $filePath = $dir . $file;
+                    date_default_timezone_set('Asia/Tehran');
+                    $uploadTime = date("m-d-Y H:i:s", filemtime($filePath));
 
-                $fileSize = filesize($filePath);
-                $fileSizeKB = round($fileSize / 1024, 0);
-            ?>
-                <div class="file-item"
-                    onclick="showImage('uploads/<?php echo htmlspecialchars($file); ?>', '<?php echo htmlspecialchars($file); ?>')"
-                    style="cursor:pointer;">
-                    <span class="file-name">
-                        <?php echo htmlspecialchars($file); ?>
-                    </span>
-                    <span class="TimeAndSize">
-                        <span class="file-time">
-                            <?php echo $uploadTime; ?>
+                    $fileSize = filesize($filePath);
+                    $fileSizeKB = round($fileSize / 1024, 0);
+                ?>
+                    <div class="file-item"
+                        onclick="showImage('uploads/<?php echo htmlspecialchars($file); ?>', '<?php echo htmlspecialchars($file); ?>')"
+                        style="cursor:pointer;">
+                        <span class="file-name">
+                            <?php echo htmlspecialchars($file); ?>
                         </span>
-                        <span class="file-size">
-                            <?php echo $fileSizeKB."KB"; ?>
+                        <span class="TimeAndSize">
+                            <span class="file-time">
+                                <?php echo $uploadTime; ?>
+                            </span>
+                            <span class="file-size">
+                                <?php echo $fileSizeKB."KB"; ?>
+                            </span>
                         </span>
-                    </span>
-                    <button class = "delete-btn" onclick="deleteFile('<?php echo htmlspecialchars($file);?>',event)">🗑️</button>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+                        <button class = "delete-btn" onclick="deleteFile('<?php echo htmlspecialchars($file);?>',event)">🗑️</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
     </div>
-
    
     <div class="preview" id="preview">
         <h3 id="fileName"style="display:none;"></h3>

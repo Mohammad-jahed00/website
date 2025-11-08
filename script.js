@@ -13,6 +13,7 @@ if (uploadBtn && imageFile && uploadMessage && downloadBtn) {
         const file = imageFile.files[0];
         if (!file) return;
 
+        
         const formData = new FormData();
         formData.append("file", file);
 
