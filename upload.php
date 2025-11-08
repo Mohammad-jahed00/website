@@ -6,7 +6,6 @@ if (!isset($_FILES['file'])) {
     exit;
 }
 
-
 $uploadDir = __DIR__ . '/uploads/';
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
@@ -14,6 +13,7 @@ $file = $_FILES['file'];
 
 $realName = preg_replace("/[^a-zA-Z0-9_\-\.]/", "_", basename($file['name']));
 $target = $uploadDir . $realName;
+
 
 $i = 1;
 $pathInfo = pathinfo($realName);

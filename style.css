@@ -1,85 +1,89 @@
 
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
 
-.upload-container {
-    position: absolute;
-    top: 35%;
-    right: 41%; 
-    transform: translate(50%, -50%);
-    
-}
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
 
 
-
-.download-container {
-    position: absolute;
-    top: 35%;
-    left: 41%;
-    transform: translate(-50%, -50%);
-}
+    .upload-container {
+        position: absolute;
+        top: 35%;
+        right: 41%;
+        transform: translate(50%, -50%);
+        
+    }
 
 
 
-
-button {
-    padding: 25px 45px;
-    font-size: 28px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
+    .download-container {
+        position: absolute;
+        top: 35%;
+        left: 41%; 
+        transform: translate(-50%, -50%);
+    }
 
 
 
 
-
-#uploadBtn {
-    background-color: #007bff;
-}
-#uploadBtn:hover {
-    background-color: #0056b3;
-}
-
-
-#downloadBtn {
-    background-color: #d91540;
-}
-#downloadBtn:hover {
-    background-color: #982f2f;
-}
+    button {
+        padding: 25px 45px;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
 
 
 
-button:active {
-    transform:scale(0.90);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);   
-}
+
+
+    #uploadBtn {
+        background-color: #007bff;
+    }
+    #uploadBtn:hover {
+        background-color: #0056b3;
+    }
+
+
+    #downloadBtn {
+        background-color: #d91540;
+    }
+    #downloadBtn:hover {
+        background-color: #982f2f;
+    }
 
 
 
-#uploadMessage {
-    display: none;
-    position: fixed;    
-    top: 550px;             
-    left: 50%;           
-    transform: translateX(-50%);
-    background-color: #4b925d;  
-    color: white;
-    padding: 15px 30px;
-    font-size: 20px;
-    
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 9999;  
-}
+    button:active {
+        transform:scale(0.90);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);   
+    }
+
+
+
+
+
+    #uploadMessage {
+        display: none;
+        position: fixed;     
+        top: 550px;            
+        left: 50%;             
+        transform: translateX(-50%); 
+        background-color: #4b925d; 
+        color: white;
+        padding: 15px 30px;
+        font-size: 20px;
+        
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 9999; 
+    }

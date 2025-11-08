@@ -12,15 +12,15 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             font-family: "Segoe UI", Arial, sans-serif;
             background-color: #fff;
             color: #000;
-            margin: 30px 80px;
+            margin: 60px 40px;
             direction: ltr;
             display: flex;
             gap: 60px;
         }
 
-       
+        
         .file-list {
-            width: 40%;
+            width: 45%;
             border-right: none; 
         }
 
@@ -30,13 +30,26 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             color: #222;
         }
 
+        .line{
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+            left: 0;
+            position: absolute;
+            top:72px;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);
+            opacity: 0.3;
+        }
+    
 
+
+        
+       
 
         .file-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 14px;
+            padding: 12px 1px;
             border-radius: 10px;
             transition: all 0.35s ease;
             font-size: 13px;
@@ -45,25 +58,24 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         }
 
         .file-name {
-            flex: 1 1 auto;    
-            min-width: 0;        
+            flex: 1 1 auto;      
+            min-width: 0;         
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-weight: 600;
+            font-weight: 600px;
         }
 
        
 
-      
         .file-item:hover {
             background-color: #f4f7ff;
             transform: translateY(-1px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-
-        .delete-btn {      
+   
+        .delete-btn {       
             background: none;
             border: none;
             color: #ff4d4d;
@@ -75,13 +87,13 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             margin-left: 10px;
         }
 
-        
+       
         .file-item:hover .delete-btn {
             opacity: 1;
             transform: scale(1);
         }
 
-        
+       
         .delete-btn:hover {
             color: #ff1a1a;
             transform: scale(1.2);
@@ -94,7 +106,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         
 
         
-       
+      
         .preview {
             flex: 1;
             text-align: center;
@@ -112,38 +124,48 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         .preview h3 {
             font-size: 15px;
             color: #595b3fff;
-            margin-left: 400px;
-            margin-top: 80px;
-
+            margin-left: 350px;
+            margin-top: 60px;
+            text-align: center;
+            text-overflow: ellipsis;
         }
 
         .preview img {
-            width: 50%;
-            height: 30vh;
+            width: 48%;
+            height: 28vh;
             border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-top: 20px;
-            margin-left: 400px;
-            display: none;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-left: 345px;
+            display: none;  
+        }
+        
+        .TimeAndSize {
+            display: flex;
+            justify-content: space-between; 
+            width: 180px;
+            font-size: 13px;
+            color: #444;
             
         }
 
+        
         #downloadBtn {
-            display: none; 
-            margin: 22px auto 0 auto; 
+            display: none;
+            margin: 22px auto 0 auto;
             padding: 12px 20px;
             font-size: 15px;
             font-weight: bold;
-            margin-left: 430px;
+            margin-left: 355px;
            
             color: black;
-            background-color: #f1ebbbff; 
+            background-color: #f1ebbbff;
             border-radius: 10px;
             text-decoration: none;
             cursor: pointer;
             box-shadow: 0 5px 10px rgba(227, 182, 182, 0.2);
             transition: all 0.3s ease;
-            display: block; 
+            display: block;
             width: fit-content;
         }
 
@@ -155,12 +177,57 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             transform: scale(0.95);
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
+
+        #search-box{
+            display: block;
+            font-size: 16px;
+            position: absolute;
+            margin-top: -45px;
+            border: 1px solid  #f0eceaff ;
+            border-radius: 5px;
+            padding: 13px 16px;
+            padding-right: 50px;
+            background-color: #fafafa;
+            outline: none;
+            width: 39%;
+            height:6%;
+            right: 10%;
+            background-color: #f7f3f1ff;
+            box-sizing: border-box;
+            direction: Itr;
+            text-align: left;
+
+            
+        }
+
+        #search-box:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+            background-color: #fff;
+        }
+
+        #search-icon{
+            display: block;
+            position: absolute;
+            margin-top: -40.5px;
+            width: 2.4%;
+            right:10.5%;
+            outline: none;  
+
+        }
+       
     </style>
 </head>
 <body>
-
+    
+    <div>
+        <input type="text" id="search-box" autocomplete="off" placeholder="Search File"  dir="auto" tabindex="0" aria-label="Search File" role="searchbox" aria-autocomplete="list" aria-expanded="true" aria-haspopup="grid" spellcheck="false">
+    </div>
+    <img src="loupe.png" alt="Search" id="search-icon">
+    
     <div class="file-list">
-        <h2>📁 فایل‌های آپلودشده</h2>
+        <div class="line"></div>
+        <h2>📁 Uploaded Files</h2>
         <?php if (empty($files)): ?>
             <p>هیچ فایلی آپلود نشده است.</p>
         <?php else: ?>
@@ -168,6 +235,9 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
                 $filePath = $dir . $file;
                 date_default_timezone_set('Asia/Tehran');
                 $uploadTime = date("m-d-Y H:i:s", filemtime($filePath));
+
+                $fileSize = filesize($filePath);
+                $fileSizeKB = round($fileSize / 1024, 0);
             ?>
                 <div class="file-item"
                     onclick="showImage('uploads/<?php echo htmlspecialchars($file); ?>', '<?php echo htmlspecialchars($file); ?>')"
@@ -175,8 +245,13 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
                     <span class="file-name">
                         <?php echo htmlspecialchars($file); ?>
                     </span>
-                    <span class="file-time">
-                        <?php echo $uploadTime; ?>
+                    <span class="TimeAndSize">
+                        <span class="file-time">
+                            <?php echo $uploadTime; ?>
+                        </span>
+                        <span class="file-size">
+                            <?php echo $fileSizeKB."KB"; ?>
+                        </span>
                     </span>
                     <button class = "delete-btn" onclick="deleteFile('<?php echo htmlspecialchars($file);?>',event)">🗑️</button>
                 </div>
@@ -184,7 +259,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         <?php endif; ?>
     </div>
 
-    
+   
     <div class="preview" id="preview">
         <h3 id="fileName"style="display:none;"></h3>
         <img id="previewImg" src="" alt="">
@@ -196,6 +271,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             const img = document.getElementById("previewImg");
             const fileName = document.getElementById("fileName");
             const downloadBtn = document.getElementById("downloadBtn");
+            
             img.src = path;
             fileName.textContent = name;
 
@@ -207,7 +283,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             downloadBtn.style.display = "inline-block";
         }
         function deleteFile(fileName, event) {
-            event.stopPropagation();
+            event.stopPropagation(); // 
 
             if (!confirm("آیا مطمئنی می‌خواهی این فایل را حذف کنی؟")) return;
 
@@ -228,6 +304,26 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             .catch(err => console.error(err));
         }
     </script>
+    <script>
+        const searchInput = document.getElementById("search-box");
 
+     
+        searchInput.addEventListener("input", function () {
+            const filter = this.value.trim().toLowerCase(); 
+            const files = document.querySelectorAll(".file-item"); 
+
+            files.forEach(file => {
+                const name = file.querySelector(".file-name").textContent.toLowerCase();
+
+                
+                if (name.includes(filter)) {
+                    file.style.display = "flex";
+                } else {
+                    file.style.display = "none";
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>

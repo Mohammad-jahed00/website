@@ -9,6 +9,7 @@ if (!isset($_POST['file'])) {
 $file = basename($_POST['file']); 
 $path = __DIR__ . '/uploads/' . $file;
 
+
 if (file_exists($path)) {
     unlink($path);
     echo json_encode(["status" => "success"]);
