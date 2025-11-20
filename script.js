@@ -13,7 +13,6 @@ if (uploadBtn && imageFile && uploadMessage && downloadBtn) {
         const file = imageFile.files[0];
         if (!file) return;
 
-        
         const formData = new FormData();
         formData.append("file", file);
 
@@ -28,13 +27,13 @@ if (uploadBtn && imageFile && uploadMessage && downloadBtn) {
                     setTimeout(()=> uploadMessage.style.display = "none", 500);
                 }, 3000);
             } else {
-                alert("خطا در آپلود فایل!");
+                alert("Error uploading file!");
             }
             imageFile.value = "";
         })
         .catch(err => {
             console.error(err);
-            alert("خطا در آپلود فایل!");
+            alert("Error uploading file!");
         });
     });
 
@@ -42,4 +41,7 @@ if (uploadBtn && imageFile && uploadMessage && downloadBtn) {
         window.open("gallery.php", "_blank");
     });
 }
+
+
+
 

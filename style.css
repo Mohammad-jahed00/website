@@ -17,6 +17,7 @@
     }
 
 
+
     .download-container {
         position: absolute;
         top: 35%;
@@ -71,11 +72,11 @@
 
     #uploadMessage {
         display: none;
-        position: fixed;     
+        position: fixed;      
         top: 550px;            
-        left: 50%;             
+        left: 50%;         
         transform: translateX(-50%); 
-        background-color: #4b925d; 
+        background-color: #4b925d;  
         color: white;
         padding: 15px 30px;
         font-size: 20px;

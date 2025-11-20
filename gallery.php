@@ -6,13 +6,13 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
 <html lang="fa">
 <head>
     <meta charset="UTF-8"> 
-    <title>لیست تصاویر</title>
+    <title>List data</title>
     <style>
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             background-color: #fff;
             color: #000;
-            margin: 60px 40px;
+            margin: 60px 20px;
             direction: ltr;
             display: flex;
             gap: 60px;
@@ -152,15 +152,15 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         .preview h3 {
             font-size: 15px;
             color: #595b3fff;
-            margin-left: 330px;
+            margin-left: 300px;
             margin-top: 60px;
             text-align: center;
             text-overflow: ellipsis;
         }
 
         .preview img {
-            width: 46%;
-            height: 24vh;
+            width: 44%;
+            height: 25vh;
             border: 1px solid #ccc;
             border-radius: 10px;
             margin-top: 17px;
@@ -171,7 +171,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         .TimeAndSize {
             display: flex;
             justify-content: space-between; 
-            width: 180px; /* عرض ثابت برای منظم ماندن */
+            width: 200px; 
             font-size: 13px;
             color: #444;
             
@@ -180,14 +180,14 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         
         #downloadBtn {
             display: none;
-            margin: 18px auto 0 auto;
+            margin: 20px auto 0 auto;
             padding: 12px 20px;
             font-size: 15px;
             font-weight: bold;
-            margin-left: 345px;
+            margin-left: 310px;
            
             color: black;
-            background-color: #f1ebbbff;
+            background-color: #dde2d3ff;
             border-radius: 10px;
             text-decoration: none;
             cursor: pointer;
@@ -198,7 +198,7 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
         }
 
         #downloadBtn:hover {
-            background-color: #b0d392ff;
+            background-color: #9ecc75ff;
         }
 
         #downloadBtn:active {
@@ -251,19 +251,19 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
     <div>
         <input type="text" id="search-box" autocomplete="off" placeholder="Search File"  dir="auto" tabindex="0" aria-label="Search File" role="searchbox" aria-autocomplete="list" aria-expanded="true" aria-haspopup="grid" spellcheck="false">
     </div>
-    <img src="loupe.png" alt="Search" id="search-icon">
+    <img src="picture/loupe.png" alt="Search" id="search-icon">
     
     <div class="file-section">
         <h2>📁 Uploaded Files</h2>
         <div class="file-list">
             <div class="line"></div>
             <?php if (empty($files)): ?>
-                <p>هیچ فایلی آپلود نشده است.</p>
+                <p>No files have been uploaded.</p>
             <?php else: ?>
                 <?php foreach ($files as $file): 
                     $filePath = $dir . $file;
                     date_default_timezone_set('Asia/Tehran');
-                    $uploadTime = date("m-d-Y H:i:s", filemtime($filePath));
+                    $uploadTime = date("m-d-Y    H:i:sa", filemtime($filePath));
 
                     $fileSize = filesize($filePath);
                     $fileSizeKB = round($fileSize / 1024, 0);
@@ -301,7 +301,22 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             const fileName = document.getElementById("fileName");
             const downloadBtn = document.getElementById("downloadBtn");
             
-            img.src = path;
+            const ext = name.split('.').pop().toLowerCase();
+
+            if(ext === "txt"){
+                img.src = "picture/txt.jpg";
+            }
+            else if(ext === "jpg" || ext === "png" || ext === "jpeg"){
+                img.src = path;
+            }
+            else if(ext === "mp4"){
+                img.src = "picture/video.png";
+            }
+            else if(ext === "mp3"){
+                img.src = "picture/audio.png";
+            }
+
+           
             fileName.textContent = name;
 
             fileName.style.display = "block";
@@ -312,9 +327,9 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             downloadBtn.style.display = "inline-block";
         }
         function deleteFile(fileName, event) {
-            event.stopPropagation(); // 
+            event.stopPropagation(); 
 
-            if (!confirm("آیا مطمئنی می‌خواهی این فایل را حذف کنی؟")) return;
+            if (!confirm("Are you sure you want to delete this file? ")) return;
 
             fetch("delete.php", {
                 method: "POST",
@@ -324,10 +339,10 @@ $files = is_dir($dir) ? array_diff(scandir($dir), ['.', '..']) : [];
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    alert("فایل با موفقیت حذف شد ✅");
+                    alert("File successfully deleted. ✅");
                     location.reload();
                 } else {
-                    alert("خطا در حذف فایل ❌");
+                    alert("Error deleting file ❌");
                 }
             })
             .catch(err => console.error(err));

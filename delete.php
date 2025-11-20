@@ -6,10 +6,8 @@ if (!isset($_POST['file'])) {
     exit;
 }
 
-
 $file = basename($_POST['file']); 
 $path = __DIR__ . '/uploads/' . $file;
-
 
 if (file_exists($path)) {
     unlink($path);
